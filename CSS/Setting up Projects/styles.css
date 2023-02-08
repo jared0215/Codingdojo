@@ -1,0 +1,13 @@
+body {
+    background-color: darkslategray;
+}
+h1 {
+    background-color: aqua;
+    color: antiquewhite;
+}
+.green {
+    background-color: green;
+}
+#red {
+    background-color: tomato;
+}
