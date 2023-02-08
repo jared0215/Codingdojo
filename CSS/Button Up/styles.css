@@ -1,0 +1,49 @@
+* {
+    font-family: monospace;
+}
+body {
+    margin: 100px;
+}
+.button {
+    color: rgb(11, 161, 161);
+    font-weight: bolder;
+    background-color: white;
+    border: 2px solid rgb(11, 161, 161);
+    border-radius: 25px;
+    height: 25px;
+    width: 150px;
+    margin-bottom: 10px;
+}
+.circle {
+    width: 50px;
+    height: 50px;
+    background-color: rgb(11, 161, 161);
+    border-radius: 25px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.plus {
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+}
+.box {
+    height: 25px;
+    width: 140px;
+    background-color: rgb(20, 94, 253);
+    border: 2px solid black;
+    border-radius: 1px;
+    padding: 5px 10px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    box-shadow: 4px 4px black;
+}
+.create {
+    color: white;
+    font-size: 15px;
+    text-align: center;
+
+}
