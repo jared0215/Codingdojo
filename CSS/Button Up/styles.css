@@ -1,5 +1,7 @@
 * {
     font-family: monospace;
+    margin: 0px;
+    padding: 0px;
 }
 body {
     margin: 100px;
@@ -28,6 +30,7 @@ body {
     color: white;
     font-size: 30px;
     font-weight: bold;
+    padding-bottom: 5px;
 }
 .box {
     height: 25px;
