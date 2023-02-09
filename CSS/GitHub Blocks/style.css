@@ -1,0 +1,42 @@
+img {
+    height: 200px;
+}
+.container {
+    width: 1250px;
+    height: 925px;
+    background-color: beige;
+    margin: 0px auto;
+    display: inline-block;
+    align-items: center;
+}
+h1 {
+    height: 50px;
+    text-align: center;
+    padding-top: 0px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 50px;
+}
+.row1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgb(42, 42, 42);
+    padding: 15px;
+    margin: 25px 125px;
+}
+.row2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgb(97, 97, 97);
+    padding: 15px;
+    margin: 25px 125px;
+}
+.row3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgb(170, 170, 170);
+    padding: 15px;
+    margin: 25px 125px;
+}
