@@ -1,17 +1,20 @@
 * {
     font-family: 'Courier New', Courier, monospace;
 }
-.nav{
+.nav {
     background-color: rgb(55, 55, 55);
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     
 }
 .nav-title {
     color: white;
-    padding-right: 575px;
+    margin-left: 15px;
     
+}
+.nav-links {
+    margin: 15px;
 }
 .nav-links a {
     color: lightgray;
