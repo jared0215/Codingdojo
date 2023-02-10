@@ -1,0 +1,36 @@
+* {
+    font-family: 'Courier New', Courier, monospace;
+}
+.nav{
+    background-color: rgb(55, 55, 55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.nav-title {
+    color: white;
+    padding-right: 575px;
+    
+}
+.nav-links a {
+    color: lightgray;
+    text-decoration: none
+}
+.nav-links li {
+    display: inline;
+    margin: 5px;
+}
+a.active {
+    color: white;
+    text-decoration: none;
+}
+.btn {
+    height: 25px;
+    width: 85px;
+    color: white;
+    background-color: teal;
+    border: 2px solid black;
+    border-radius: 1px;
+    box-shadow: 4px 4px black;
+}
