@@ -1,0 +1,119 @@
+* {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+/* TOP NAVIGATION BAR */
+.nav {
+    width: 650px;
+    background-color: rgb(42, 42, 42);
+    margin: -10px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.logo {
+    color: white;
+}
+.search {
+    width: 250px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+.btn-login {
+    height: 25px;
+    width: 85px;
+    color: white;
+    font-weight: 600;
+    background-color: rgb(221, 199, 0);
+    border: 2px solid black;
+    box-shadow: 2px 2px 0px 0px black;
+}
+/* Main */
+.main {
+    width: 700px;
+    margin: 0px auto;
+}
+.row-1 {
+    width: inherit;
+    display: flex;
+    align-items: top;
+    justify-content: space-evenly;
+}
+.col-1 {
+    
+
+}
+/* DEFINTION COLOUMN 1 */
+.define-row {
+    border: 3px solid black;
+    margin: 30px 0px -10px;
+    border-radius: 5px;
+    display: flex;
+    flex: 1;
+    padding-left: 10px;
+}
+.define-col-1 {
+    
+}
+.define-col-2 {
+    display: flex;
+    align-items: center;
+}
+.define-col-2 > p {
+    width: 225px;
+    padding: 25px;
+}
+.define-col-1-row-1 {
+    text-align: center;
+    margin: -5px;
+}
+.noun {
+    font-style: italic;
+    margin: -10px;
+}
+.define-col-1-row-2 {
+    text-align: center;
+    padding: 10px;
+}
+.likes {
+    height: 35px;
+    width: 85px;
+    color: rgb(42, 42, 42);
+    font-weight: 700;
+    background-color: rgb(221, 199, 0);
+    border: 3px solid black;
+    box-shadow: 2px 2px 0px 0px black;
+    margin-bottom: 10px;
+}
+/* DEFINTION COLOUMN 2 */
+.col-2 {
+    /* display: flex; */
+}
+.add-def {
+    border: 3px solid black;
+    margin: 30px 0px 0px -5px;
+    border-radius: 5px;
+    padding: 15px;
+    height: 125px;
+    
+}
+.add-def-row-1 {
+    margin: -20px 0px;
+}
+.add-def-row-2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-add-def {
+    height: 35px;
+    width: 150px;
+    color: rgb(42, 42, 42);
+    font-weight: 700;
+    background-color: rgb(69, 255, 196);
+    border: 3px solid black;
+    box-shadow: 2px 2px 0px 0px black;
+    margin: 15px 0px 10px;
+}
+.add-def-row-1 > h2 {
+    width: 200px;
+}
