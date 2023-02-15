@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Likes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="nav">
+        <h1>Network</h1>
+    </div>
+    <div class="head">
+        <h1>Your Feed</h1>
+    </div>
+    <div class="main">
+        <div class="row">
+
+            <!-- This column is for our profile -->
+            <div class="col-1">
+                <div class="avatar-profile">
+                    <div class="avatar">
+                        <img src="./img/user-circle.png" alt="Profile Image">
+                    </div>
+                    <div class="avatar-link">
+                        <a href="#">Add an avatar</a>
+                    </div>
+                    <div class="avatar-name">
+                        <h2>James Doe</h2>
+                    </div>
+                </div>
+            </div>
+
+            <!-- This is column is for our feed -->
+            <div class="col-2">
+                <div class="feed">
+                    <div class="feed-row-1">
+                        <div class="feed-name">
+                            <h3>Neil M</h3>
+                        </div>
+                        <div class="feed-likes">
+                            <h4 id="more-likes-1">0 like(s)</h4>
+                        </div>
+                        <div class="feed-like-button">
+                            <button onclick="addLikeOne()" class="like">Like</button>
+                        </div>
+                    </div>
+                    <div class="feed-row-2">
+                        <p>I just setup this new discord bot, let me know what you all think. <a href="#">link</a></p>
+                    </div>
+                </div>
+                <div class="feed">
+                    <div class="feed-row-1">
+                        <div class="feed-name">
+                            <h3>Nichole K</h3>
+                        </div>
+                        <div class="feed-likes">
+                            <h4 id="more-likes-2">0 like(s)</h4>
+                        </div>
+                        <div class="feed-like-button">
+                            <button onclick="addLikeTwo()" class="like">Like</button>
+                        </div>
+                    </div>
+                    <div class="feed-row-2">
+                        <p>Just finished my <a href="#">next comic</a>, check it out.</p>
+                    </div>
+                </div>
+                <div class="feed">
+                    <div class="feed-row-1">
+                        <div class="feed-name">
+                            <h3>Jim R</h3>
+                        </div>
+                        <div class="feed-likes">
+                            <h4 id="more-likes-3">0 like(s)</h4>
+                        </div>
+                        <div class="feed-like-button">
+                            <button onclick="addLikeThree()" class="like">Like</button>
+                        </div>
+                    </div>
+                    <div class="feed-row-2">
+                        <p>I can't stop listening to the <a href="#">new album</a> Who else is liking it?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
