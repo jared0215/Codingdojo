@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Shelter</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="nav">
+        <div class="nav-container">
+
+            <!-- Top Navigation Row -->
+            <div class="nav-row-1">
+                <h1 class="nav-title"><img class="heart" src="./assets/heart-light.png" alt="Heart Icon" style="vertical-align: middle;">Pet Shelter</h1>
+                <ul class="nav-links">
+                    <li><a href="#">Find a Pet</a></li>
+                    <li><a href="#">About</a></li>
+                    <li id="removeButton"><button class="donate" onclick="removeDonate(this)">Donate</button></li>
+                </ul>
+            </div>
+            
+            <!-- Bottom Navigation Row -->
+            <div class="nav-row-2">
+
+                <!-- Pet Selection Column -->
+                <div class="pet-sel-col">
+                    <p>I'm looking for a...</p>
+                    <label for="pets"><img src="./assets/paw-light.png" alt="Paw Icon" class="paw-light" style="vertical-align: middle;"></label>
+                    <select name="pets" id="pets" onchange= "alertSelection(this)">
+                        <option value="Pet">Any Pet</option>
+                        <option value="Dog">Dog</option>
+                        <option value="Cat">Cat</option>
+                    </select>
+                </div>
+
+                <!-- Pet Location Column -->
+                <div class="pet-loc-col">
+                    <p>in or near...</p>
+                    <form>
+                        <label for="city-zip"><img class="pin" src="./assets/pin-light.png" alt="Map Pin Icon" style="vertical-align: middle;"></label>
+                        <input type="text" name="city-zip" id="city-zip" placeholder="City or Zip Code">
+                    </form>
+                </div>
+
+                <!-- Button Column -->
+                <div class="pet-btn-col">
+                    <button class="best-friend">Find your new best friend</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main">
+        <div class="main-container">
+            <!-- Peppers Profile Container -->
+            <div class="profile-container">
+
+                <!-- Peppers Profile Columns -->
+                <div class="profile-col-1">
+                    <img class="profile-pic" src="./assets/pepper.jpg" alt="Pepper">
+                </div>
+                <div class="profile-col-2">
+                    <h2>Pepper</h2>
+                    <p>Pepper is a slightly shy grey tabby, but she really loves showing her human affection.</p>
+                </div>
+                <div class="profile-col-3">
+                    <p><span id="pets1">3</span> petting(s)</p>
+                    <button class="btn" onclick="addPets('pets1')">Pet Pepper</button>
+                </div>
+            </div>
+
+            <!-- Bruces Profile Container -->
+            <div class="profile-container-dark">
+
+                <!-- Bruces Profile Columns -->
+                <div class="profile-col-1">
+                    <img class="profile-pic" src="./assets/bruce.jpg" alt="Bruce">
+                </div>
+                <div class="profile-col-2">
+                    <h2>Bruce</h2>
+                    <p>Bruce is a loyal companion. He loves long walks and cold weather.</p>
+                </div>
+                <div class="profile-col-3">
+                    <p><span id="pets2">5</span> petting(s)</p>
+                    <button class="btn" onclick="addPets('pets2')">Pet Bruce</button>
+                </div>
+            </div>
+
+            <!-- Oscars Profile Container -->
+            <div class="profile-container">
+
+                <!-- Oscars Profile Columns -->
+                <div class="profile-col-1">
+                    <img class="profile-pic" src="./assets/oscar.jpg" alt="Oscar">
+                </div>
+                <div class="profile-col-2">
+                    <h2>Oscar</h2>
+                    <p>Oscar is bright, energetic, and friendly. He is looking for a good home.</p>
+                </div>
+                <div class="profile-col-3">
+                    <p><span id="pets3">8</span> petting(s)</p>
+                    <button class="btn" onclick="addPets('pets3')">Pet Oscar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
