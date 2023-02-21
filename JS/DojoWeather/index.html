@@ -5,8 +5,93 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dojo Weather</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    
+
+    <!-- Navigation Bar -->
+    <div class="nav">
+        <div class="flex-container">
+            <h1>Dojo Weather</h1>
+            <ul class="city">
+                <li><a href="#" onclick="alertCity(this)">Burbank</a></li>
+                <li><a href="#" onclick="alertCity(this)">Chicago</a></li>
+                <li><a href="#" onclick="alertCity(this)">Dallas</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-flex-container">
+        
+        <!-- Top row of our main content -->
+        <div class="top-row">
+            <h2>San Jose</h2>
+            <div class="temp-flex">
+                <label for="tempBox">Show temperature in</label>
+                <select name="tempBox" id="tempBox" onchange="convertTemp(this)">
+                    <option value="C">C°</option>
+                    <option value="F">F°</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Middle row of our main content -->
+        <div class="middle-row">
+
+            <!-- Weather Boxes -->
+            <div class="weather-box">
+                <h2>Today</h2>
+                <img src="./assets/some_rain.png" alt="Rain Icon">
+                <p>some rain</p>
+                <div class="temp-display">
+                    <p class="hot">24°</p>
+                    <p class="cold">18°</p>
+                </div>
+            </div>
+            <div class="weather-box">
+                <h2>Tomorrow</h2>
+                <img src="./assets/some_sun.png" alt="Sun Icon">
+                <p>some sun</p>
+                <div class="temp-display">
+                    <p class="hot">27°</p>
+                    <p class="cold">19°</p>
+                </div>
+            </div>
+            <div class="weather-box">
+                <h2>Friday</h2>
+                <img src="./assets/some_clouds.png" alt="Clouds Icon">
+                <p>some clouds</p>
+                <div class="temp-display">
+                    <p class="hot">21°</p>
+                    <p class="cold">16°</p>
+                </div>
+            </div>
+            <div class="weather-box">
+                <h2>Saturday</h2>
+                <img src="./assets/some_sun.png" alt="Sun Icon">
+                <p>some sun</p>
+                <div class="temp-display">
+                    <p class="hot">26°</p>
+                    <p class="cold">21°</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom row of our content -->
+        <div class="bottom-row">
+
+            <!-- Cookie Policy Message -->
+            <div class="cookie">
+                <img src="./assets/cookie.png" alt="Cookie Icon">
+                <div class="cookie-message">
+                    <h3>Stop! Cookie Time</h3>
+                    <p>We use cookies (sadly not the edible ones) to personalize <br>content and ads, to provide social media features and to <br>analyze our traffic. <a href="#">Read more...</a></p>
+                </div>
+                <button class="btn" onclick="removeCookie(this)">I Accept</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
