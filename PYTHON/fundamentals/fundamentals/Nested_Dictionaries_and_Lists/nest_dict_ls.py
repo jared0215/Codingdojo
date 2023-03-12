@@ -67,7 +67,7 @@ def printInfo(some_dict):
         print(len(some_dict[key]), key.upper())
         for val in some_dict[key]:
             print(val.upper())
-        print("")
+        print("\n")
 
 
 printInfo(dojo)
