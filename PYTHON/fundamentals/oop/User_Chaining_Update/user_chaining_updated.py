@@ -18,53 +18,50 @@ class User():
         print("Member Status", self.is_rewards_member)
         print("Gold Card Points:", self.gold_card_points)
         print("\n")
+        return self
 
     def enroll(self):
         if self.is_rewards_member == True:
-            print("You already a member", self.first_name, self.last_name)
+            print("You are already a member", self.first_name, self.last_name)
             return False
         else:
             self.is_rewards_member = True
             self.gold_card_points = 200
+        return self
 
     def spend_points(self, amount):
         if amount <= 0:        # Checks if the amount inputted is negative
             print('Please enter a valid amount, ' + self.first_name + '.')
-            return
+            print("\n")
+            return self
         if self.gold_card_points < amount:        # Checks if the amount is enough to spend
             print('Sorry ' + self.first_name + ",",
                   'you do not have enough points to redeem this reward. :(')
+            print("\n")
+            return self
         else:
             self.gold_card_points -= amount        # Decreases specified amount of points
             print('Thank you for redeeming your points ' +
                   self.first_name + "!", 'Enjoy your Reward! :)')
-        print("\n")
+            print("\n")
+            return self
 
 
 user_jared = User('Jared', 'Campos', 'jared0215@hotmail.com', '24')
-user_jared.enroll()
-user_jared.spend_points(100)
-user_jared.display_info()
+user_jared.enroll().spend_points(100).display_info()
 
 user_paul = User('Paul', 'Giampiccolo', 'yankeekid413@yahoo.com', '32')
-user_paul.enroll()
-user_paul.spend_points(300)
-user_paul.display_info()
+user_paul.enroll().spend_points(300).display_info()
 
 user_nathan = User('Nathan', 'Mirkov', 'nathmirk@gmail.com', '27')
-user_nathan.enroll()
-user_nathan.spend_points(40)
-user_nathan.display_info()
+user_nathan.enroll().spend_points(40).display_info()
+
 
 user_tom = User('Thomas', 'Koerkel', 'tkoerkel3@gmail.com', '84')
-user_tom.enroll()
-user_tom.spend_points(-300)
-user_tom.display_info()
+user_tom.enroll().spend_points(-300).display_info()
 
 user_james = User('James', 'Fiorillo', 'JapeFiorillo4@gmail.com', '25')
-user_james.enroll()
-user_james.spend_points(0)
-user_james.display_info()
+user_james.enroll().spend_points(0).display_info()
 
 # Checking Membership Status
 user_jared.enroll()
