@@ -11,24 +11,27 @@ class bankAccount:
 
     def deposit(self, amount):
         if amount < 0:
-            print("You cannot deposit negative amounts")
+            print(
+                f"Sorry {self.account_name}, you cannot deposit negative amounts")
         else:
             self.balance = self.balance + amount
         return self
 
     def withdraw(self, amount):
         if amount < 0:
-            print("You cannot withdraw negative amounts")
+            print(
+                f"Sorry {self.account_name}, you cannot withdraw negative amounts")
         elif amount > self.balance:
             self.balance = self.balance - 5
-            print("You cannot withdraw more than your current balance. Chargin a $5 Fee")
+            print(
+                f"Sorry {self.account_name}, you cannot withdraw more than your current balance. Chargin a $5 Fee")
         else:
             self.balance = self.balance - amount
         return self
 
     def display_account_info(self):
-        print(f"Your current balance is ${str(self.balance)}")
-        print(f"Your interest rate is {str(self.int_rate)}%")
+        print(f"Your current balance is ${self.balance}")
+        print(f"Your interest rate is {self.int_rate}%")
         return self
 
     def yield_interest(self):
