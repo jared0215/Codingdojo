@@ -12,14 +12,16 @@ class bankAccount:
     def deposit(self, amount):
         if amount < 0:
             print("You cannot deposit negative amounts")
-        self.balance = self.balance + amount
+        else:
+            self.balance = self.balance + amount
         return self
 
     def withdraw(self, amount):
         if amount < 0:
             print("You cannot withdraw negative amounts")
         elif amount > self.balance:
-            print("You cannot withdraw more than your current balance")
+            self.balance = self.balance - 5
+            print("You cannot withdraw more than your current balance. Chargin a $5 Fee")
         else:
             self.balance = self.balance - amount
         return self
