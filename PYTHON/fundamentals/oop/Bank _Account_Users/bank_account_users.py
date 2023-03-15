@@ -98,9 +98,6 @@ class User:
         print("\n")
         return to_user, from_user
 
-    # @classmethod
-    # def user_accounts(cls):
-
 
 jared = User('Jared', 'anpch@example.com')
 jane = User('Jane', 'hzdkv@example.com')
