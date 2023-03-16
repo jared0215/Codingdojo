@@ -92,9 +92,14 @@ class User:
 
     @staticmethod
     def user_transfer_money(amount, from_user, to_user, account_type_from, account_type_to):
-        to_user.make_deposit(amount, account_type_to, suppress_print=True)
-        from_user.make_withdraw(amount, account_type_from, suppress_print=True)
-        print(f"{from_user.name} has transferred ${amount} from {account_type_from} to {to_user.name}s {account_type_to}")
+        if from_user.accounts[account_type_from].balance >= amount:
+            to_user.make_deposit(amount, account_type_to, suppress_print=True)
+            from_user.make_withdraw(
+                amount, account_type_from, suppress_print=True)
+            print(
+                f"{from_user.name} has transferred ${amount} from {account_type_from} to {to_user.name}s {account_type_to}")
+        else:
+            print("Sorry, you cannot transfer more than your current balance")
         print("\n")
         return to_user, from_user
 
@@ -111,7 +116,7 @@ john.newBankAccount('checkings').newBankAccount('savings')
 jared.display_user_balance('checkings').display_user_balance('savings')
 jane.display_user_balance('checkings').display_user_balance('savings')
 
-jared.transfer_money(2000, 'checkings', 'savings')
+# jared.transfer_money(2000, 'checkings', 'savings')
 jared.user_transfer_money(1000, jared, jane, 'checkings', 'savings')
 
 jared.display_user_balance('checkings').display_user_balance('savings')
