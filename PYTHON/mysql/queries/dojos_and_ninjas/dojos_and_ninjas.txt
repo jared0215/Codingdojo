@@ -1,0 +1,16 @@
+SET SQL_SAFE_UPDATES = 0;
+
+-- Creates 3 dojos
+INSERT INTO dojos (name, created_at, updated_at)
+VALUES ('WORLDWIDE', NOW(), NOW()),('NEW JERSEY', NOW(), NOW()),('NEW YORK', NOW(), NOW());
+
+-- Deletes the 3 dojos I just added
+DELETE FROM dojos;
+
+-- Creats 3 dojos
+INSERT INTO dojos (name, created_at, updated_at)
+VALUES ('WORLDWIDE', NOW(), NOW()),('NEW JERSEY', NOW(), NOW()),('NEW YORK', NOW(), NOW());
+
+-- Creates 3 Ninjas that belong to the first dojo
+INSERT INTO ninjas (dojo_id, first_name, last_name, age)
+VALUES (1, 'Jape', 'Fiorillo', '25'),(1, 'Hector', 'Triana', '24'),(1, 'Mario', 'Grano', '25');
