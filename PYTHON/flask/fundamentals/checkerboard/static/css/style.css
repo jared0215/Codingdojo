@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.main {
+    margin: 0 auto;
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap-reverse;
+}
+table tr td {
+    height: 100px;
+    width: 100px;
+}
+.color1 {
+    background-color: var(--background-color);
+}
+.color2 {
+    background-color: var(--background-color);
+}
