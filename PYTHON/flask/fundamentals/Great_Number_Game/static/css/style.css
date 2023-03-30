@@ -21,10 +21,20 @@
     flex-direction: column;
 }
 
+.text-cent {
+    text-align: center;
+}
 .box {
     background-color: red;
     height: 300px;
     width: 300px;
     margin-bottom: 15px;
     color: white;
+}
+.form-control, .form-control:focus, .form-control::placeholder  {
+    background-color: #2B3035;
+    color: white;
+}
+.main-2 {
+    width: 60%;
 }
