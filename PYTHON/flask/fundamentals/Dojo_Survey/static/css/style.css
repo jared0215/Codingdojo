@@ -4,7 +4,26 @@
 }
 .textbox::placeholder {
     color: black !important;
+    opacity: 0.75 !important;
 }
-.textbox {
-    padding-top: 2rem !important;;
+
+.textbox:focus::placeholder {
+    color: transparent !important;
+}
+
+label {
+    padding-bottom: 0.3rem !important;
+
+}
+
+h1, h6 {
+    color: gold;
+}
+
+.comments {
+    margin-left: 0 !important;
+    margin-right: 0!important;
+    overflow-y:auto; 
+    max-height: 180px;
+    width: 370px;
 }

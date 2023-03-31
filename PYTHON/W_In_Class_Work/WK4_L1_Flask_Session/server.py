@@ -14,7 +14,7 @@ def index():
 @app.route('/submit', methods=['POST'])
 def submit():
     # print(request.form['action'])
-    if request.form['action'] == 'register':
+    if request.form['action'] == 'submit':
         data = {
             'id': len(users) + 1,
             'f_name': request.form['f_name'],
