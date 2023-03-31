@@ -1,0 +1,10 @@
+* {
+    margin: 0 auto;
+    padding: 0 auto;
+}
+.textbox::placeholder {
+    color: black !important;
+}
+.textbox {
+    padding-top: 2rem !important;;
+}

@@ -40,5 +40,29 @@ def dash():
     return render_template('dash.html', users=users)
 
 
+@app.route('/users/<int:user_id>/edit')
+def edit(user_id):
+    return render_template('update.html', user=User.get_one(user_id))
+
+
+@app.route('/users/<int:user_id>/update', methods=['POST'])
+def update_user(user_id):
+    data = {
+        'first_name': request.form['f_name'],
+        'last_name': request.form['l_name'],
+        'email': request.form['email'],
+        'password': request.form['password'],
+        'id': user_id
+    }
+    User.update(data)
+    return redirect('/dash')
+
+
+@app.route('/users/<int:user_id>/destroy')
+def destroy(user_id):
+    User.delete(user_id)
+    return redirect('/dash')
+
+
 if __name__ == '__main__':
     app.run(debug=True)

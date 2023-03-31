@@ -37,3 +37,46 @@ class User:
         results = connectToMySQL(cls.db).query_db(query, data)
         print(results)
         return results
+
+    @classmethod
+    def get_one_by_email(cls, email):
+        data = {
+            'email': email
+        }
+        query = "SELECT * FROM users WHERE email = %(email)s;"
+        results = connectToMySQL(cls.db).query_db(query, data)
+        return cls(results[0])
+
+    @classmethod
+    def get_one(cls, id):
+        data = {
+            'id': id
+        }
+        query = "SELECT * FROM users WHERE id = %(id)s;"
+        results = connectToMySQL(cls.db).query_db(query, data)
+        return cls(results[0])
+
+    # UPDATE
+    @classmethod
+    def update(cls, data):
+        query = """
+        UPDATE users SET 
+        first_name = %(first_name)s, 
+        last_name = %(last_name)s, 
+        email = %(email)s, 
+        password = %(password)s WHERE id = %(id)s;
+        """
+        results = connectToMySQL(cls.db).query_db(query, data)
+        return results
+
+    # DELETE
+    @classmethod
+    def delete(cls, id):
+        data = {
+            'id': id
+        }
+        query = """
+        DELETE FROM users WHERE id = %(id)s;
+        """
+        results = connectToMySQL(cls.db).query_db(query, {'id': id})
+        return results
