@@ -51,7 +51,38 @@ def create():
     session['user_id'] = user_id
 
     # Redirects to the users page
+    return redirect(f'/users/{user_id}')
+
+
+# Route to a page that allows a user to update their information
+@app.route('/users/<int:user_id>/edit')
+def edit(user_id):
+    return render_template('update.html', user=User.get_one(user_id))
+
+
+# Updates the user information using post method
+@app.route('/users/<int:user_id>/update', methods=['POST'])
+def update_user(user_id):
+    data = {
+        'first_name': request.form['f_name'],
+        'last_name': request.form['l_name'],
+        'email': request.form['email'],
+        'id': user_id
+    }
+    User.update(data)
+    return redirect(f'/users/{user_id}')
+
+
+# Deletes a user using delete method
+@app.route('/users/<int:user_id>/destroy')
+def destroy(user_id):
+    User.delete(user_id)
     return redirect('/users')
+
+
+@app.route('/users/<int:user_id>')
+def show(user_id):
+    return render_template('show.html', user=User.get_one(user_id))
 
 
 if __name__ == "__main__":

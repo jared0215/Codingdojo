@@ -49,3 +49,38 @@ class User:
         results = connectToMySQL(cls.db).query_db(query, data)
         print(results)
         return results
+
+    # Get one user by id
+    @classmethod
+    def get_one(cls, id):
+        data = {
+            'id': id
+        }
+        query = "SELECT * FROM users WHERE id = %(id)s;"
+        results = connectToMySQL(cls.db).query_db(query, data)
+        return cls(results[0])
+
+    # UPDATE USER
+    @classmethod
+    def update(cls, data):
+        query = """
+        UPDATE users SET 
+        first_name = %(first_name)s, 
+        last_name = %(last_name)s, 
+        email = %(email)s,
+        updated_at = NOW() WHERE id = %(id)s;
+        """
+        results = connectToMySQL(cls.db).query_db(query, data)
+        return results
+
+    # DELETE USER
+    @classmethod
+    def delete(cls, id):
+        data = {
+            'id': id
+        }
+        query = """
+        DELETE FROM users WHERE id = %(id)s;
+        """
+        results = connectToMySQL(cls.db).query_db(query, data)
+        return results

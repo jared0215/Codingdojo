@@ -23,11 +23,12 @@
 
                 <!-- Table Headings for each Column  -->
                 <thead>
-                <tr class="table-success">
+                <tr class="table-warning">
                     <th scope="col">#</th>
                     <th scope="col">Full Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Created At</th>
+                    <th scope="col">Actions</th>
                 </tr>
                 </thead>
 
@@ -38,11 +39,19 @@
                         <td>{{user.id}}</td>
                         <td>{{user.first_name}} {{user.last_name}}</td>
                         <td>{{user.email}}</td>
-                        <td>{{user.created_at}}</td>
+                        <td>{{user.created_at.strftime('%B %d, %Y')}}</td>
+                        <td>
+                            <a href="/users/{{user.id}}/edit" class="link-warning link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover">Edit | </a>
+                            <a href="/users/{{user.id}}/destroy" class="link-warning link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover">Delete | </a>
+                            <a href="/users/{{user.id}}" class="link-warning link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover">Show</a>
+                        </td>
                     </tr>
                     {% endfor%}
                 </tbody>
             </table>
+            <div class="new-user">
+                <a href="/users/new" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Add a New User</a>
+            </div>
         </div>
     </div>
 </body>
