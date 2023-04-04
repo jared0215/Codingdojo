@@ -1,6 +1,7 @@
-from flask_app import app
 from flask import render_template, redirect, request, session, flash
-from models import Burger
+
+from flask_app import app
+from ..models.burger import Burger
 
 
 @app.route('/')
