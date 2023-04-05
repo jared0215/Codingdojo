@@ -1,5 +1,5 @@
 # We need to import the burger class from our models
-from flask_app.models import burger
+from ..models.burger import Burger
 from flask_app.config.mysqlconnection import connectToMySQL
 
 
@@ -23,5 +23,5 @@ class Restaurant:
                 "created_at": row_from_db["burgers.created_at"],
                 "updated_at": row_from_db["burgers.updated_at"]
             }
-            restaurant.burgers.append(burger.Burger(burger_data))
+            restaurant.burgers.append(Burger.Burger(burger_data))
         return restaurant
