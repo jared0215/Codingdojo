@@ -1,5 +1,5 @@
 # We will need to import burger.py to access the class
-from ..models.burger import Burger
+from ..models import burger
 from flask_app.config.mysqlconnection import connectToMySQL
 
 
@@ -36,7 +36,7 @@ class Topping:
                 "created_at": row_from_db["toppings.created_at"],
                 "updated_at": row_from_db["toppings.updated_at"]
             }
-            topping.on_burgers.append(Burger(burger_data))
+            topping.on_burgers.append(burger.Burger(burger_data))
         return topping
 
     @classmethod

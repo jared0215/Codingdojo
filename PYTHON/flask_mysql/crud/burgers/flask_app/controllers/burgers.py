@@ -19,6 +19,12 @@ def create():
         "calories": request.form['calories'],
         "restaurants_id": 1
     }
+    # if there are errors:
+    # We call the staticmethod on Burger model to validate
+    if not Burger.validate_burger(request.form):
+        # redirect to the route where the burger form is rendered.
+        return redirect('/')
+    # else no errors:
     Burger.save(data)
     return redirect('/burgers')
 

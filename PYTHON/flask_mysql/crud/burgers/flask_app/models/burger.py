@@ -1,5 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
-from flask_app.models.topping import Topping
+from flask_app.models import topping
+from flask import flash
 
 # burger.py
 
@@ -63,7 +64,7 @@ class Burger:
                 "created_at": row_from_db["toppings.created_at"],
                 "updated_at": row_from_db["toppings.updated_at"]
             }
-            burger.toppings.append(Topping(topping_data))
+            burger.toppings.append(topping.Topping(topping_data))
         return burger
 
     @classmethod
@@ -77,3 +78,20 @@ class Burger:
             query = "INSERT INTO add_ons (burger_id, topping_id) VALUES (%(burger_id)s, %(topping_id)s);"
             connectToMySQL('burgers').query_db(
                 query, {'burger_id': data['burger_id'], 'topping_id': topping_id})
+
+    @staticmethod
+    def validate_burger(burger):
+        is_valid = True  # we assume this is true
+        if len(burger['name']) < 3:
+            flash("Name must be at least 3 characters.")
+            is_valid = False
+        if len(burger['bun']) < 3:
+            flash("Bun must be at least 3 characters.")
+            is_valid = False
+        if int(burger['calories']) < 200:
+            flash("Calories must be 200 or greater.")
+            is_valid = False
+        if len(burger['meat']) < 3:
+            flash("Bun must be at least 3 characters.")
+            is_valid = False
+        return is_valid
