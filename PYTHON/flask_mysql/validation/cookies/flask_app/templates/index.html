@@ -16,12 +16,12 @@
     <div class="container mx-auto mt-5">
 
         <!-- Title for Page -->
-        <h4 class="display-4">Cookie Orders:</h4>
+        <h4 class="display-4">Cookie Orders &#127850;</h4>
 
         <!-- Sub Headers and New Order link above our table -->
         <div class="subheaders d-flex flex-row justify-content-between align-items-end mb-3">
             <h6 class="display-6">All Orders:</h6>
-            <a href="/">+ New Order</a>
+            <a href="/cookies/new">+ New Order</a>
         </div>
 
         <!-- Table that holds our orders -->
@@ -36,18 +36,20 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for order in orders %}
                     <tr>
-                        <th scope="row">Jared Campos</th>
-                        <td>Chocolate Chip</td>
-                        <td>100</td>
+                        <th scope="row">{{ order.name }}</th>
+                        <td>{{ order.cookie }}</td>
+                        <td>{{ order.boxes }}</td>
                         <td>
                             <a href="">edit</a>
                         </td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
-
     </div>
+    
 </body>
 </html>
