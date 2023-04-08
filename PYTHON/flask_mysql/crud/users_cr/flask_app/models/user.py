@@ -1,5 +1,9 @@
 # import the function that will return an instance of a connection
 from flask_app.config.mysqlconnection import connectToMySQL
+from flask import flash
+import re
+
+EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 # Creating a class for the user table
 
@@ -84,3 +88,32 @@ class User:
         """
         results = connectToMySQL(cls.db).query_db(query, data)
         return results
+
+    @staticmethod
+    def validate_user(user):
+        is_valid = True
+        if len(user['f_name']) < 1:
+            flash("First name cannot be empty")
+            is_valid = False
+        if len(user['l_name']) < 1:
+            flash("Last name cannot be empty")
+            is_valid = False
+        if len(user['email']) < 1:
+            flash("Email cannot be empty")
+            is_valid = False
+        if not EMAIL_REGEX.match(user['email']):
+            flash("Invalid email")
+            is_valid = False
+        if User.unique_email(user['email']):
+            flash("Email is already in use")
+            is_valid = False
+        return is_valid
+
+    @staticmethod
+    def unique_email(email):
+        query = "SELECT * FROM users WHERE email = %(email)s;"
+        results = connectToMySQL('users_schema').query_db(
+            query, {'email': email})
+        if len(results) > 0:
+            return True
+        return False

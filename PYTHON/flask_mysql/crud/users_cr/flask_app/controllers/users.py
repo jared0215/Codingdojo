@@ -31,6 +31,12 @@ def new_user():
 # Defines a function to create a new user
 def create():
 
+    # Validates the user and stores it temporarily incase the validation fails
+    if not User.validate_user(request.form):
+        session['first_name'] = request.form['f_name']
+        session['last_name'] = request.form['l_name']
+        session['email'] = request.form['email']
+        return redirect("/users/new")
     # If the action of our form is create we will proceed to create a new user
     if request.form['action'] == 'create':
 
@@ -40,6 +46,14 @@ def create():
             'last_name': request.form['l_name'],
             'email': request.form['email'],
         }
+
+    # Remove the data after submitting the form
+    if 'first_name' in session:
+        session.pop('first_name')
+    if 'last_name' in session:
+        session.pop('last_name')
+    if 'email' in session:
+        session.pop('email')
 
     # Saves the user information into the database
     user_id = User.save(data)
