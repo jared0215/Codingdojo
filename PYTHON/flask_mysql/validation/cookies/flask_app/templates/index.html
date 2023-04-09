@@ -42,7 +42,9 @@
                         <td>{{ order.cookie }}</td>
                         <td>{{ order.boxes }}</td>
                         <td>
-                            <a href="">edit</a>
+                            <a href="/cookies/edit/{{order.id}}">Edit</a>
+                            <span> |</span>
+                            <a href="/cookies/delete/{{order.id}}">Delete</a>
                         </td>
                     </tr>
                     {% endfor %}
@@ -50,6 +52,6 @@
             </table>
         </div>
     </div>
-    
+
 </body>
 </html>

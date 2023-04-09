@@ -22,24 +22,30 @@
             <h4 class="display-4">Log a New Order &#127850;</h4>
             <a href="/cookies">Back to Purchases</a>
         </div>
-
+            {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+                {% if messages %}                            <!-- check if there are any messages -->
+                    {% for message in messages %}            <!-- loop through the messages -->
+                        <p class="text-danger">{{message}}</p>                   <!-- display each message in a paragraph tag -->
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
         <!-- Logs new orders -->
         <div class="make-order w-50">
             <form action="/order" method="POST">
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Full Name </span>
-                    <input type="text" name="full_name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter your Full Name...">
+                    <input type="text" name="full_name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter your Full Name..." value="{{session['name']}}">
                 </div>
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Cookie Type: </span>
-                    <input type="text" name="cookie_type" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter the type of Cookie you want to order...">
+                    <input type="text" name="cookie_type" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter the type of Cookie you want to order..." value="{{session['cookie']}}">
                 </div>
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Number of Boxes: </span>
-                    <input type="number" value="Boxes" name="num_of_boxes" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter the amount of boxes...">
+                    <input type="number" name="num_of_boxes" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Enter the amount of boxes..." value="session['boxes']">
                 </div>
 
                 <input type="submit" value="Log Order" name="log" class="btn btn-outline-primary">

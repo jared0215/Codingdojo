@@ -1,4 +1,5 @@
 from flask_app.config.mysqlconnection import connectToMySQL
+from flask import flash
 
 
 class Order:
@@ -54,5 +55,34 @@ class Order:
             'id': id
         }
         query = """SELECT * FROM orders WHERE id = %(id)s"""
-        results = connectToMySQL(cls.db).query_db(query, {'id': id})
+        results = connectToMySQL(cls.db).query_db(query, data)
+
+        if not results:
+            return None
+
         return cls(results[0])
+
+    @classmethod
+    def delete(cls, id):
+        query = """DELETE FROM orders WHERE id = %(id)s"""
+        results = connectToMySQL(cls.db).query_db(query, {'id': id})
+        return results
+
+    @staticmethod
+    def validate_order(order):
+        is_valid = True
+        if len(order['full_name']) < 2:
+            flash('*** Name is required ***')
+            is_valid = False
+        if len(order['cookie_type']) < 2:
+            flash('*** Cookie type is required ***')
+            is_valid = False
+        try:
+            num_of_boxes = int(order['num_of_boxes'])
+            if num_of_boxes < 1:
+                flash('*** Enter a valid number of boxes ***')
+                is_valid = False
+        except ValueError:
+            flash('*** Enter a valid number of boxes ***')
+            is_valid = False
+        return is_valid
