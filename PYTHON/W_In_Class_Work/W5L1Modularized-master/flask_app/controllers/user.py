@@ -1,8 +1,10 @@
-from flask import render_template,request,session,redirect
+from flask import render_template, request, session, redirect
 from flask_app import app
-
+from flask_bcrypt import Bcrypt
 from flask_app.models import user
 
+
+bcrypt = Bcrypt(app)
 # from flask_app.models.user import User
 
 
@@ -10,21 +12,22 @@ from flask_app.models import user
 def index():
     return render_template("index.html")
 
-@app.route("/submit",methods=["POST"])
+
+@app.route("/submit", methods=["POST"])
 def submit():
     # print(request.form['action'])
     if request.form['action'] == 'register':
 
-        data={
+        data = {
             'first_name': request.form['f_name'],
-            'last_name':request.form['l_name'],
-            'email':request.form['email'],
-            'password':request.form['password'],
+            'last_name': request.form['l_name'],
+            'email': request.form['email'],
+            'password': request.form['password'],
         }
 
         id = user.User.save(data)
         print(f"THIS IS THE ID: {id}")
-        
+
         session['user_id'] = id
 
         return redirect("/dash")
@@ -33,12 +36,10 @@ def submit():
         if not this_user:
             return redirect("/")
         if this_user.password == request.form['password']:
-            session['user_id']=this_user.id
+            session['user_id'] = this_user.id
             return redirect("/dash")
         else:
             return redirect("/")
-   
-    
 
 
 @app.route("/dash")
@@ -46,28 +47,30 @@ def dash():
     if 'user_id' not in session:
         return redirect("/")
     users = user.User.get_all()
-    return render_template("dash.html",users=users)
+    return render_template("dash.html", users=users)
+
 
 @app.route("/users/<int:id>/edit")
-
 def edit_view(id):
     if 'user_id' not in session:
         return redirect("/")
-    return render_template("update.html",user=user.User.get_one(id))
+    return render_template("update.html", user=user.User.get_one(id))
 
-@app.route("/users/<int:id>/update",methods=["POST"])
+
+@app.route("/users/<int:id>/update", methods=["POST"])
 def update_user(id):
     if 'user_id' not in session:
         return redirect("/")
-    data={
-        'first_name':request.form['f_name'],
-        'last_name':request.form['l_name'],
-        'email':request.form['email'],
-        'password':request.form['password'],
-        'id':id
+    data = {
+        'first_name': request.form['f_name'],
+        'last_name': request.form['l_name'],
+        'email': request.form['email'],
+        'password': request.form['password'],
+        'id': id
     }
     user.User.update(data)
     return redirect("/dash")
+
 
 @app.route("/users/<int:id>/destroy")
 def delete(id):
