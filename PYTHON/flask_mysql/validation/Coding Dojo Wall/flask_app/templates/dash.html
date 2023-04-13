@@ -12,11 +12,12 @@
 </head>
 <body>
 
-    <h1 class="display-1 text-center">Hello {{ session['full_name'] }}!</h1>
+    <h1 class="display-1 text-center mb-5">Hello {{ session['full_name'] }}!</h1>
 
-    <form action="/logout">
-        <div class="form-group">
-            <input type="submit" class="btn btn-warning" value="Logout" name="logout">
+    <form action="/logout" class="d-flex">
+        <div class="form-group mx-auto">
+            <input type="submit" class="btn btn-warning mx-3" value="Logout" name="logout">
+            <a href="/wall" class="btn btn-warning mx-3">See Posts</a>
         </div>
     </form>
 </body>

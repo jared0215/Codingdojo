@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybBud6Lj7TlBbSghTY0KU4M2so2u6/4Q4OZZmBxe4af4M4p04" crossorigin="anonymous" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous" defer></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Wall</title>
+</head>
+<body>
+
+    <!-- Container -->
+    <div class="container">
+
+        <!-- Naviagtion Bar -->
+        <nav class="navbar bg-dark navbar-expand-lg" data-bs-theme="dark">
+
+            <div class="container-fluid">
+
+                <!-- Brand Link that sends user to dashboard -->
+                <a class="navbar-brand" href="/dashboard">Coding Dojo Wall</a>
+
+                <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+
+                    <ul class="navbar-nav">
+
+                        <!-- Link that greets the current user -->
+                        <li class="nav-item">
+                            <h6 class="navbar-brand text-light display-6">Welcome, {{ session['full_name'] }}</h6>
+                        </li>
+
+                        <!-- Link that sends user to dashboard -->
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
+                        </li>
+
+                        <!-- Link that logs the user out -->
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/logout">Log Out</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Border to space out page -->
+        <div class="border-top border-2 border-black my-5"></div>
+
+        <!-- Form that allowd a user to create a Post on the Wall -->
+        <form action="/makepost" method="POST" class="w-75 mx-auto">
+
+            <!-- Text area for out post -->
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">What's on your mind? Create a new post:</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="content"></textarea>
+            </div>
+
+            <!-- Button that allows user to publish their post -->
+            <div class="mb-3 d-flex justify-content-end">
+                <input type="submit" class="btn btn-warning" value="Publish" name="publish">
+            </div>
+            
+        </form>
+
+        <!-- Border to space out page -->
+        <div class="border-top border-2 border-black my-5"></div>
+
+        <!-- Shows all of the post on our wall -->
+        <div class="community mb-5">
+
+            <h6 class="display-6 mb-5">All Community Posts</h6>
+            
+            <!-- Scrollable Post Wall -->
+            <div class="scroll-posts overflow-y-auto pe-3" style="max-height: 50vh;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+
+                            <!-- Getting our posts to display -->
+                            {% for one_post in all_posts %}
+                            <div class="all-posts row mb-3">
+                                <p class="fs-5">{{ one_post.creator.first_name }} {{ one_post.creator.last_name }} - {{ one_post.creator.created_at.strftime('%B') }} {{ one_post.creator.created_at.day }} </p>
+                                <p class="fs-6">{{ one_post.content }}</p>
+
+                                <!-- Getting our comments to display -->
+                                <div class="comments">
+                                    {% for comment in one_post.comments %}
+                                        <div class="border-top border-1 border-black my-2 w-50 justify-content-center"></div>
+                                        <div class="comment ms-4">
+                                            <p class="fs-6">Comment: {{ comment.creator.first_name }} - {{ comment.created_at.strftime('%B') }} {{ comment.created_at.day }}</p>
+                                            <p class="fs-6 ms-4">{{ comment.content }}</p>
+                                        </div>
+                                        
+                                    {% endfor %}
+                                </div>
+
+                                <!-- Deleting a Users posts if it belongs to them -->
+                                {% if session['user_id'] == one_post.creator.id %}
+                                    <form action="/deletepost/{{ one_post.id }}" method="POST" class="d-inline mb-5">
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                    
+                                {% endif %}
+
+                                <!-- Adding a commet to posts -->
+                                <form action="/addcomment/{{ one_post.id }}" method="POST" class="w-75">
+                                    <textarea class="form-control mb-2" rows="1" name="content" placeholder="Write a comment..."></textarea>
+                                    <button type="submit" class="btn btn-warning">Submit</button>
+                                </form>
+
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
