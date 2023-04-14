@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybBud6Lj7TlBbSghTY0KU4M2so2u6/4Q4OZZmBxe4af4M4p04" crossorigin="anonymous" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous" defer></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Create Recipe</title>
+</head>
+<body>
+    <!-- Container -->
+    <div class="container">
+
+        <!-- Naviagtion Bar -->
+        <nav class="navbar bg-dark navbar-expand-lg" data-bs-theme="dark">
+
+            <div class="container-fluid">
+
+                <!-- Brand Link that sends user to dashboard -->
+                <a class="navbar-brand" href="/dashboard">Recipie Share</a>
+
+                <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+
+                    <ul class="navbar-nav">
+
+                        <!-- Link that greets the current user -->
+                        <li class="nav-item">
+                            <h6 class="navbar-brand text-light display-6">Welcome, {{ session['full_name'] }}</h6>
+                        </li>
+
+                        <!-- Link that logs the user out -->
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/recipes">View all Recipes</a>
+                        </li>
+
+                        <!-- Link that sends user to dashboard -->
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
+                        </li>
+
+                        <!-- Link that logs the user out -->
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/logout">Log Out</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Container -->
+        <div class="main">
+
+            <!-- Heading for adding a new Recipe -->
+            <h4 class="display-4 text-center m-4">Add a new Recipe!</h4>
+
+            <!-- Flash messages for form errors -->
+            {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+                {% if messages %}                            <!-- check if there are any messages -->
+                <ul class="flashes">
+                    {% for message in messages %}
+                        <li class="text-warning">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            {% endwith %}
+            <!-- Creating a form for the user to submit a recipe -->
+            <form action="/recipes/create" method="POST" class="d-flex justify-content-between">
+
+                <!-- Left Column of the form for inputting Recipe Name / Description /Instructions -->
+                <div class="col-md-6">
+                    <!-- Name -->
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="Recipe Name..." name="name" value="{{ session['name'] if 'name' in session else '' }}">
+                        <label for="floatingInput">Recipe Name</label>
+                    </div>
+                    <!-- Description -->
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="description">{{ session['description'] if 'description' in session else '' }}</textarea>
+                        <label for="floatingTextarea">Add Recipe Description...</label>
+                    </div>
+                    <!-- Instruction -->
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="instructions">{{ session['instructions'] if 'instructions' in session else '' }}</textarea>
+                        <label for="floatingTextarea2">Add Recipe Instructions...</label>
+                    </div>
+                </div>
+                
+                <!-- Right Column of the form for inputting Date Cooked / Under 30 Minutes / Submitting the Form-->
+                <div class="col-md-6 w-25 mx-auto">
+                    <!-- Date Cooked / Made: -->
+                    <div class="form-floating mb-3">
+                        <label for="cooked_date" class="">Date Cooked / Made:</label>
+                        <input type="date" class="form-control pt-5 pb-4" id="cooked_date" name="cooked_date" required>
+                    </div>
+
+                    <!-- Row for our Radios -->
+                    <div class="radio-row">
+
+                        <!-- Under 30 Minutes -->
+                        <p class="fs-6">In under 30 Minutes?</p>
+                        <!-- No Radio -->
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="inlineRadio1" value="Yes" name="cooked_in_30" checked>
+                            <label class="form-check-label" for="inlineRadio1">Yes</label>
+                        </div>
+                        <!-- Yes Radio -->
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="inlineRadio2" value="No" name="cooked_in_30">
+                            <label class="form-check-label" for="inlineRadio2">No</label>
+                        </div>
+                        <!-- Submit Recipe Button -->
+                        <div class="submit mt-5 d-flex justify-content-center">
+                            <input class="btn btn-success" type="submit" value="Submit" name="submit">
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

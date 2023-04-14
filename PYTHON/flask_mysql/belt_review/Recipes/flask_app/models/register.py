@@ -23,6 +23,7 @@ class User:
         self.password = data['password']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        self.recipes = []
 
     # Method gets all the users from the database
 
@@ -102,7 +103,7 @@ class User:
     @staticmethod
     def unique_email(email):
         query = "SELECT * FROM users WHERE email = %(email)s;"
-        results = connectToMySQL('register').query_db(
+        results = connectToMySQL('myrecipes').query_db(
             query, {'email': email})
         if len(results) > 0:
             return True
