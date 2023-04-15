@@ -1,0 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@counter-style thumbs {
+    system: cyclic;
+    symbols: "\274c";
+    suffix: " ";
+}
+
+ul {
+    list-style: thumbs;
+}
