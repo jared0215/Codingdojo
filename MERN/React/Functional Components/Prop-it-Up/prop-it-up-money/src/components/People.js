@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 
 const People = (props) => {
-  const [birthday, setBirthday] = useState(props.age);
+  const [money, setMoney] = useState(props.initialMoney);
   return (
     <div>
       <h1>
         {props.lname}, {props.fname}
       </h1>
-      <p>Age: {birthday}</p>
+      <p>Age: {props.age}</p>
       <p>Hair Color: {props.hair}</p>
-      <button onClick={(event) => setBirthday(birthday + 1)}>
-        Birthday Button for {props.fname} {props.lname}
+      <p>Money: ${money}</p>
+      <button onClick={(event) => setMoney(money + 100)}>
+        Add Money to {props.fname} {props.lname}(s) Balance
       </button>
     </div>
   );
