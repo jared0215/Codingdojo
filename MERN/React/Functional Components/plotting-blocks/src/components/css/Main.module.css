@@ -1,0 +1,11 @@
+.div {
+    background: #e06666;
+    width: 80%;
+    height: 90%;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 20px 20px 0px 20px;
+}
