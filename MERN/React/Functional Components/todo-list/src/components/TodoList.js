@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import Todo from "./Todo";
+import React, { useState } from "react";
+import Todo from "./Todo.js";
 import CreateToDoForm from "./CreateTodoForm.js";
 
 const TodoList = () => {
