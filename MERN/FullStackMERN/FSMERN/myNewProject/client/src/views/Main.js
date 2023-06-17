@@ -10,12 +10,12 @@ const Main = (props) => {
 
     return (
         <div>
-            /* PersonForm and Person List can both utilize the getter and setter
-            established in their parent component: */
+            {/* /* PersonForm and Person List can both utilize the getter and setter
+            established in their parent component: */}
             <PersonForm people={people} setPeople={setPeople} />
             <hr />
-            /* All we need to do is pass the people state variable and the
-            setPeople function into each component as props
+            {/* /* All we need to do is pass the people state variable and the
+            setPeople function into each component as props */}
             <PersonList people={people} setPeople={setPeople} />
         </div>
     );

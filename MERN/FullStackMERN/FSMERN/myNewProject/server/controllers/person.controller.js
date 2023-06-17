@@ -1,10 +1,12 @@
 const Person = require("../models/person.model.js");
+
 module.exports.index = (request, response) => {
     response.json({
         message: "Hello World",
     });
 };
 
+// CREATE
 module.exports.createPerson = (request, response) => {
     const { firstName, lastName } = request.body;
     Person.create({
@@ -15,6 +17,7 @@ module.exports.createPerson = (request, response) => {
         .catch((err) => response.json(err));
 };
 
+// GET ALL
 module.exports.getAllPeople = (request, response) => {
     Person.find({})
         .then((persons) => {
@@ -25,4 +28,11 @@ module.exports.getAllPeople = (request, response) => {
             console.log(err);
             response.json(err);
         });
+};
+
+// GET ONE BY ID
+module.exports.getPerson = (request, response) => {
+    Person.findById(request.params.id)
+        .then((person) => response.json(person))
+        .catch((err) => response.json(err));
 };
