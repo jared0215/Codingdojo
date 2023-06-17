@@ -1,0 +1,41 @@
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
+const PersonList = (props) => {
+    /* We deconstruct getter and setter which were passed down 
+    via props by the parent component (app.js) to our child 
+    component (PersonList.js). Now we can easily use the getter 
+    and setter without having to write props.getter or props.setter every time: */
+    const { people, setPeople } = props;
+
+    // We are going to use useEffect to make a GET request to the database
+    useEffect(() => {
+        axios
+            // Get all people from the database
+            .get("http://localhost:8000/api/people")
+            .then((res) => {
+                console.log(res.data);
+                // Store the retrieved data in state via the setter
+                setPeople(res.data);
+            })
+            .catch((err) => console.log(err));
+    }, []);
+
+    return (
+        <div>
+            /* We can map through our people state variable to display each
+            person's name */
+            {people.map((person, index) => {
+                return (
+                    /* We must include a key for each item in our list */
+                    <p key={index}>
+                        /* We can use dot notation to access each attribute */
+                        {person.lastName}, {person.firstName}
+                    </p>
+                );
+            })}
+        </div>
+    );
+};
+
+export default PersonList;
