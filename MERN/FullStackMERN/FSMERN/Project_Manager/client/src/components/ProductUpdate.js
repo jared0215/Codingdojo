@@ -1,49 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useParams, useNavigate } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
-import "bootstrap/dist/css/bootstrap.min.css";
 
-// Product Form Component
-const ProductForm = (props) => {
-    // deconstructs the props
-    const { product, setProduct } = props;
-    // sets the state for the form inputs
+const Update = (props) => {
+    const { id } = useParams();
+    const navigate = useNavigate();
     const [title, setTitle] = useState("");
     const [price, setPrice] = useState("");
     const [description, setDescription] = useState("");
 
-    // handles the submit button
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
+    useEffect(() => {
         axios
-            .post("http://localhost:8000/api/products", {
+            .get(`http://localhost:8000/api/products/${id}`)
+            .then((res) => {
+                console.log(res.data);
+                setTitle(res.data.title);
+                setPrice(res.data.price);
+                setDescription(res.data.description);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+
+    const updatedProduct = (e) => {
+        e.preventDefault();
+        axios
+            .patch(`http://localhost:8000/api/products/${id}`, {
                 title,
                 price,
                 description,
             })
             .then((res) => {
-                console.log(res);
                 console.log(res.data);
-                // resets the form inputs
-                setProduct([...product, res.data]);
+                navigate("/home");
             })
             .catch((err) => {
                 console.log(err);
             });
     };
-    // returns the form component to be rendered in the page
+
     return (
         <div>
             {/* Product Form */}
             <Form
-                onSubmit={handleSubmit}
+                onSubmit={updatedProduct}
                 className="mx-auto m-5 w-25 bg-dark p-5 fs-5 text-light rounded d-flex flex-column"
             >
                 {/* Form Title */}
-                <h1>Add Product</h1>
+                <h1>Edit Product</h1>
 
                 {/* Product Title Input */}
                 <Form.Group controlId="formBasicTitle" className="mb-4 mt-2">
@@ -81,11 +89,11 @@ const ProductForm = (props) => {
                     type="submit"
                     className="mt-4 w-50 mx-auto"
                 >
-                    Submit Product
+                    Update Product
                 </Button>
             </Form>
         </div>
     );
 };
 
-export default ProductForm;
+export default Update;

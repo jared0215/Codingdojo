@@ -32,3 +32,17 @@ module.exports.createProduct = (req, res) => {
             res.status(500).json(err);
         });
 };
+
+// UPDATE ONE PRODUCT BY ID
+module.exports.updateProduct = (req, res) => {
+    Product.findOneAndUpdate({ id_: req.params.id }, req.body, {
+        new: true,
+        runValidators: true,
+    })
+        .then((updatedProduct) => {
+            res.status(200).json(updatedProduct);
+        })
+        .catch((err) => {
+            res.status(500).json(err);
+        });
+};
