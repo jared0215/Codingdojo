@@ -1,13 +1,22 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 const ProductList = (props) => {
-    const { product, setProduct } = props;
+    const { removeFromDom, product, setProduct } = props;
+    const deleteProduct = (productId) => {
+        axios
+            .delete(`http://localhost:8000/api/products/${productId}`)
+            .then((res) => {
+                console.log(res.data);
+                removeFromDom(productId);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
 
     useEffect(() => {
         axios
@@ -38,6 +47,15 @@ const ProductList = (props) => {
                         <Link to={`/product/${product._id}`}>View Detail</Link>
                         <span> | </span>
                         <Link to={`/product/edit/${product._id}`}>Edit</Link>
+                        <span> | </span>
+                        <Button
+                            variant="danger"
+                            type="submit"
+                            className="ms-1 w-10 mx-auto"
+                            onClick={() => deleteProduct(product._id)}
+                        >
+                            Delete
+                        </Button>
                     </div>
                 );
             })}

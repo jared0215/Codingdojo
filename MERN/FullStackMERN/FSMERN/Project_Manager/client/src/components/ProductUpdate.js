@@ -14,22 +14,22 @@ const Update = (props) => {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:8000/api/products/${id}`)
+            .get(`http://localhost:8000/api/products/` + id)
             .then((res) => {
                 console.log(res.data);
                 setTitle(res.data.title);
-                setPrice(res.data.price);
                 setDescription(res.data.description);
+                setPrice(res.data.price);
             })
             .catch((err) => {
                 console.log(err);
             });
     }, []);
 
-    const updatedProduct = (e) => {
+    const updateProduct = (e) => {
         e.preventDefault();
         axios
-            .patch(`http://localhost:8000/api/products/${id}`, {
+            .patch(`http://localhost:8000/api/products/` + id, {
                 title,
                 price,
                 description,
@@ -47,7 +47,7 @@ const Update = (props) => {
         <div>
             {/* Product Form */}
             <Form
-                onSubmit={updatedProduct}
+                onSubmit={updateProduct}
                 className="mx-auto m-5 w-25 bg-dark p-5 fs-5 text-light rounded d-flex flex-column"
             >
                 {/* Form Title */}
@@ -59,7 +59,9 @@ const Update = (props) => {
                     <Form.Control
                         type="text"
                         value={title}
-                        onChange={(e) => setTitle(e.target.value)}
+                        onChange={(e) => {
+                            setTitle(e.target.value);
+                        }}
                     />
                 </Form.Group>
 
@@ -69,7 +71,9 @@ const Update = (props) => {
                     <Form.Control
                         type="text"
                         value={description}
-                        onChange={(e) => setDescription(e.target.value)}
+                        onChange={(e) => {
+                            setDescription(e.target.value);
+                        }}
                     />
                 </Form.Group>
 
@@ -79,7 +83,9 @@ const Update = (props) => {
                     <Form.Control
                         type="number"
                         value={price}
-                        onChange={(e) => setPrice(e.target.value)}
+                        onChange={(e) => {
+                            setPrice(e.target.value);
+                        }}
                     />
                 </Form.Group>
 

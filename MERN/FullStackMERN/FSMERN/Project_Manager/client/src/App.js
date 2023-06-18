@@ -1,8 +1,5 @@
 import "./App.css";
-import axios from "axios";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ProductList from "./components/ProductList";
-import ProductForm from "./components/ProductForm";
 import ProductDetail from "./components/ProductDetail";
 import Main from "./views/Main";
 import Update from "./components/ProductUpdate";
