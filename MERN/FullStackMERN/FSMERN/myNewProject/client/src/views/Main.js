@@ -1,25 +1,49 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PersonForm from "../components/PersonForm";
-import PersonList from "../components/PersonList";
-
-// Main is a parent component to PersonForm and PersonList
-const Main = (props) => {
-    // We are going to use useState to store our list of people
-    const [people, setPeople] = useState([]);
-
+import DisplayAll from "../components/DisplayAll";
+const Main = () => {
+    const [personList, setPersonList] = useState([]);
+    useEffect(() => {
+        axios
+            .get("http://localhost:8000/api/people")
+            .then((res) => {
+                setPersonList(res.data);
+            })
+            .catch((err) => console.log(err));
+    }, []);
+    const removeFromDom = (personId) => {
+        axios
+            .delete("http://localhost:8000/api/people/" + personId)
+            .then((res) => {
+                console.log(res);
+                console.log(res.data);
+                setPersonList(
+                    personList.filter((person) => person._id !== personId)
+                );
+            })
+            .catch((err) => console.log(err));
+    };
+    const createPerson = (personParam) => {
+        axios
+            .post("http://localhost:8000/api/people", personParam)
+            .then((res) => {
+                console.log(res);
+                console.log(res.data);
+                setPersonList([...personList, res.data]);
+            })
+            .catch((err) => console.log(err));
+    };
     return (
         <div>
-            {/* /* PersonForm and Person List can both utilize the getter and setter
-            established in their parent component: */}
-            <PersonForm people={people} setPeople={setPeople} />
+            <PersonForm
+                onSubmitProp={createPerson}
+                initialFirstName=""
+                initialLastName=""
+            />
             <hr />
-            {/* /* All we need to do is pass the people state variable and the
-            setPeople function into each component as props */}
-            <PersonList people={people} setPeople={setPeople} />
+            <DisplayAll personList={personList} removeFromDom={removeFromDom} />
         </div>
     );
 };
-
-// We must export the component to use it in other files
 export default Main;
